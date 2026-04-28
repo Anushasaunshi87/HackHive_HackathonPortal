@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hackathon Portal - Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    background: 
+        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+        url("prjct/h1");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.container{
+    width:380px;
+    padding:40px;
+    background:rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+    border:1px solid rgba(255,255,255,0.3);
+}
+
+h2{
+    text-align:center;
+    font-family:'Playfair Display', serif;
+    font-size:32px;
+    margin-bottom:25px;
+    letter-spacing:2px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:12px 0;
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.5);
+    color:white;
+    outline:none;
+}
+
+input::placeholder{
+    color:rgba(255,255,255,0.7);
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:
+transparent;
+    border:1px solid white;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    letter-spacing:1px;
+}
+
+button:hover{
+    background:white;
+    color:black;
+}
+
+.toggle{
+    text-align:center;
+    margin-top:20px;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.toggle span{
+    text-decoration:underline;
+}
+
+.hidden{
+    display:none;
+}
+
+.message{
+    text-align:center;
+    margin-top:10px;
+    font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- LOGIN -->
+    <div id="loginForm">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button onclick="login()">LOGIN</button>
+        <div class="toggle" onclick="toggleForm()">
+            Don't have an account? <span>Sign Up</span>
+        </div>
+        <div class="message" id="loginMessage"></div>
+    </div>
+
+    <!-- SIGN UP -->
+    <div id="signupForm" class="hidden">
+        <h2>Sign Up</h2>
+        <input type="text" id="signupName" placeholder="Full Name">
+        <input type="email" id="signupEmail" placeholder="Email">
+        <input type="password" id="signupPassword" placeholder="Password">
+        <button onclick="signup()">CREATE ACCOUNT</button>
+        <div class="toggle" onclick="toggleForm()">
+            Already have an account? <span>Login</span>
+        </div>
+        <div class="message" id="signupMessage"></div>
+    </div>
+
+</div>
+
+<script>
+function toggleForm(){
+    document.getElementById("loginForm").classList.toggle("hidden");
+    document.getElementById("signupForm").classList.toggle("hidden");
+}
+
+function signup(){
+    let email = document.getElementById("signupEmail").value;
+    let password = document.getElementById("signupPassword").value;
+
+    if(email === "" || password === ""){
+        document.getElementById("signupMessage").innerText = "Please fill all fields";
+        document.getElementById("signupMessage").style.color = "red";
+        return;
+    }
+
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPassword", password);
+
+    document.getElementById("signupMessage").innerText = "Account created successfully!";
+    document.getElementById("signupMessage").style.color = "lightgreen";
+}
+
+function login(){
+    let email = document.getElementById("loginEmail").value;
+    let password = document.getElementById("loginPassword").value;
+
+    let storedEmail = localStorage.getItem("userEmail");
+    let storedPassword = localStorage.getItem("userPassword");
+
+    if(email === storedEmail && password === storedPassword){
+        document.getElementById("loginMessage").innerText = "Login Successful!";
+        document.getElementById("loginMessage").style.color = "lightgreen";
+
+        setTimeout(()=>{
+            window.location.href="index.html";
+        },1000);
+    }else{
+        document.getElementById("loginMessage").innerText="Invalid Email or Password";
+        document.getElementById("loginMessage").style.color="red";
+    }
+}
+</script>
+
+</body>
+</html>
