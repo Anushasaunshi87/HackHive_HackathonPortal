@@ -1,59 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hackathons portal</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Hackathon Finder</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section class="header">
-    <nav>
-        <a href="index.html>"><img src="pictures/k.png" height="50px" ></a>
-        <div class="nav-links">
-            <ul>
-                <li><a href="">HOME</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="htye.html.html">HACKTHON-TYPE</a></li>
-                <li><a href="login.html">LOGIN/SIGN-UP</a></li>
-                
-            </ul>
-        </div>
 
-    </nav>
-    <div class="text-box">
-        <h1>Where Coders Compete & Create</h1>
-        <p>Find national & global hackathons, team up with innovators, and turn ideas into impact.<br>One portal. Endless opportunities.</p>
-        <a href="" class="hero">Visit Us To Know More</a>
+  <header>
+    <h1>Hackathon Finder</h1>
+    <p>Find hackathons by your interest</p>
+  </header>
 
-    </div>
-    </section>
-    <!-- call to acttion -->
-     <section class="cta">
-        <h1>Enroll now and compete with the best minds</h1>
-        <a href="" class="hero" >CONTACT US</a>
-          
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search hackathons...">
 
-     </section>
+    <select id="filter">
+      <option value="all">All Domains</option>
+      <option value="AI">AI</option>
+      <option value="Web">Web Development</option>
+      <option value="Blockchain">Blockchain</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+    </select>
+  </div>
 
+  <div id="hackathon-list" class="container"></div>
 
-    <!-- javascrit -->
-    <script>
-        var navLinks = document.getElementById("navLinks");
-        function showMenu(){
-            navLinks.style.right="0";
-        }
-        function hideMenu(){
-            navLinks.style.right="-200px";
-        }
-    </script>
-
-    <!-- -----footer----- -->
-     <section class="footer">
-        <h4>About us</h4>
-        <p>Find hackathons organized across colleges and institutions in one place.
-Stay updated on locations, dates, and participation details </p>
-     </section>
-    
+  <script src="script.js"></script>
 </body>
 </html>
